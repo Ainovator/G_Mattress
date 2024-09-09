@@ -1,0 +1,228 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f5f7;
+    color: #333;
+}
+
+.container {
+    width: 95%;
+    max-width: 750px;
+    margin: auto;
+    /* padding: 30px; */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #B6262C;
+
+}
+
+.card-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    gap: 10px;
+}
+
+.card {
+    width: 50%; /* Карточка и панель будут иметь одинаковую ширину */
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.card.disabled::before {
+    content: "только с модульным кроем"; /* Текст, который будет отображаться */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(31, 31, 31);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    z-index: 10;
+    text-align: center;
+    white-space: nowrap; /* Предотвращаем перенос текста */
+}
+
+.card.disabled {
+    pointer-events: none; /* Отключаем возможность клика */
+    opacity: 0.6; /* Уменьшаем непрозрачность */
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #e0e0e0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card.selected {
+    box-shadow: 0 8px 16px red;
+    border-color: red;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.side-panel {
+    display: none;
+    flex-direction: column;
+    width: 100%; /* Совпадает с шириной контейнера */
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f4f5f7;
+    /* pointer-events: none; */ /* Удалено для включения взаимодействия */
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.sliders-container {
+    height: 50%; /* Половина высоты side-panel */
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    flex: 1; /* Занимает оставшееся пространство */
+    
+}
+
+.checkbox-container {
+    height: 50%; /* Половина высоты side-panel */
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    color: red;
+    flex: 1; /* Занимает оставшееся пространство */
+    font-size: 24px;
+}
+
+#mattress-canvas {
+    height: 500px; /* Половина высоты side-panel */
+    background-color: #f4f5f7;
+    border: 1px solid #ddd;
+    flex: 1; /* Занимает оставшееся пространство */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff0000; /* Красная окантовка */
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #333;
+}
+
+.form-control:focus {
+    border-color: #ff0000; /* Красная окантовка при фокусе */
+    outline: none;
+}
+
+.btn {
+    background-color: #ff0000; /* Красная кнопка */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.btn:hover:enabled {
+    background-color: #cc0000; /* Темно-красная кнопка при наведении */
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    color: #333;
+}
+
+#results p {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: block;
+    width: calc(100% - 40px);
+    margin-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#results p:hover {
+    background-color: #cc0000;
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: black;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border-radius: 5px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: black;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ff0000;
+    cursor: pointer;
+    border-radius: 50%;
+}

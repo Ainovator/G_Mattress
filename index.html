@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матрасный калькулятор</title>
+    <link rel="icon" href="images/back.jpg" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="new.css">
+    <link rel="stylesheet" href="form.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="new.js"></script> <!-- Подключаем внешний JS файл -->
+    <script src="main.js"></script> <!-- Подключаем внешний JS файл -->
+</head>
+
+<body>
+    <div class="container">
+        <div class="top">
+            <h1>Gliver</h1>
+        </div>
+        
+        <h2>Размеры</h2>
+        <div class="form-group">
+            <label for="input-mattress-width">Введите ширину матраса в миллиметрах:</label>
+            <input type="number" id="input-mattress-width" min="0" value = 600 class="form-control" required inputmode="numeric" pattern="^[0-9]*$">
+        </div>
+        <div class="form-group">
+            <label for="input-mattress-length">Введите длину матраса в миллиметрах:</label>
+            <input type="number" id="input-mattress-length" min="0" value = 1500 class="form-control" required inputmode="numeric" pattern="^[0-9]*$">
+        </div>
+        <div class="form-group">
+            <label for="input-mattress-amount">Введите количество одинаковых матрасов:</label>
+            <input type="number" id="input-mattress-amount" min="0" class="form-control" value="1" required pattern="^[0-9]*$">
+        </div>
+    
+
+        <h2>Крой</h2>
+        <div class="card-container">
+            <div class="card selectable-card" id="card-no-bort">
+                <img src="images/no-bort-bottom.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Цельный крой</p>
+                </div>
+            </div>
+            <div class="card selectable-card" id="card-with-bort">
+                <img src="images/only-bort-bottom.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Отрезной крой</p>
+                </div>
+            </div>
+        </div>
+       
+        <h2>Кант
+            <span class="tooltip-container">
+                <span class="tooltip-icon">?</span>
+                <div class="tooltip-content">
+                    <div class="slideshow-container">
+                        <div class="mySlides fade">
+                            <img src="images/cant-1.jpg" alt="Кант 1" class="tooltip-image">
+                        </div>
+                        <div class="mySlides fade">
+                            <img src="images/cant-2.jpg" alt="Кант 2" class="tooltip-image">
+                        </div>
+                        <div class="mySlides fade">
+                            <img src="images/cant-3.jpg" alt="Кант 3" class="tooltip-image">
+                        </div>
+                    </div>
+                    <p>Декоративный и защитный элемент, который используется для окантовки краев матраса, придавая ему законченный внешний вид и защищая от износа</p>
+                </div>
+            </span>
+        </h2>
+        <div class="card-container">
+            <div class="card selectable-card" id="card-no-cant">
+                <img src="images/bort+cant-bottom.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>С кантом</p>
+                </div>
+            </div>
+            <div class="card selectable-card" id="card-with-cant">
+                <img src="images/only-bort-bottom.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Без канта</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Молния</h2>
+        <div class="card-container">
+            <div class="card selectable-card" id="card-zipper-side">
+                <img src="images/zipper-side.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>На борту</p>
+                </div>
+            </div>
+
+            <div class="card selectable-card" id="card-zipper-bottom">
+                <img src="images/zipper-bottom.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>На дне</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Декорации</h2>
+        <div class="card-container" style="margin-bottom: 20px;">
+
+            <div class="card selectable-card" id="card-uno-stitch">
+                <img src="images/back.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Стёжка одинарная</p>
+                </div>
+            </div>
+
+            <div class="card selectable-card" id="card-double-stitch">
+                <img src="images/with-stitch.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Стёжка двойная</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="card selectable-card" id="card-with-pug">
+                <img src="images/with-pug.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Пуговицы</p>
+                </div>
+            </div>
+
+            <div class="card selectable-card" id="card-pik">
+                <img src="images/back.jpg" alt="Пиковка изображение" class="card-img">
+                <div class="card-body">
+                    <p>Пиковка</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Панель рисования -->
+        <div id="side-panel" class="side-panel">
+            <div class="sliders-container" id="sliders-container">
+                <label for="length-step-slider">Кол-во по длине: <span id="length-step-value">0</span></label>
+                <input type="range" id="length-step-slider" min="0" max="5" step="1" value=0>
+                <label for="width-step-slider">Кол-во по ширине: <span id="width-step-value">0</span></label>
+                <input type="range" id="width-step-slider" min="0" max="5" step="1" value=0>
+            </div>
+            <canvas id="mattress-canvas" width="400" height="200"></canvas>
+            <div class="checkbox-container">
+                <label>Пуговицы с двух сторон</label>
+                <input type = "checkbox" id = "double-pug">
+            </div>
+        </div>
+    
+        <h2>Крепёж</h2>
+        <div class="card-container">
+            <div class="card selectable-card" id="card-velcro">
+                <img src="images/back.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Липучки</p>
+                </div>
+            </div>
+
+            <div class="card selectable-card" id="card-anti-slip">
+                <img src="images/back.jpg" alt="Кант изображение" class="card-img">
+                <div class="card-body">
+                    <p>Антискользячка</p>
+                </div>
+            </div>
+        </div>
+        <!-- Выбор выреза -->
+        <h2>Форма</h2>
+        <div class="form-card-container" style = "margin-bottom: 20px;">
+              <!-- Вырез внутри -->
+              <div class="card form-card" id="card-inside-cut">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.99 212.51" fill="transparent" stroke="#000" stroke-width="8">
+                    <g>
+                        <path d="M126.91,2.73,4.07,2.5,3.82,35.79Q3.18,122.88,2.52,210l415-3.87V3.28L126.91,2.73"></path>
+                        <rect x="58.78" y="40.18" width="44.39" height="129.55"></rect>
+                    </g>
+                </svg>
+                <div class="card-body">
+                    <p>Вырез внутри</p>
+                </div>
+            </div>
+             <!-- Сложный скос -->
+             <div class="card form-card" id="card-multy-cut">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.97 212.45" fill="transparent" stroke="#000" stroke-width="8">
+                    <g>
+                        <polygon points="2.5 209.93 2.5 33.41 35.53 33.41 35.53 2.5 153.21 2.73 153.21 35.99 259.53 35.99 259.53 2.92 382.37 3.15 382.37 35.99 417.47 35.99 417.47 206.06 2.5 209.93"></polygon>
+                    </g>
+                </svg>
+                <div class="card-body">
+                    <p>Сложный</p>
+                </div>
+            </div>
+            <!-- Полукгрулый скос -->
+            <div class="card form-card" id="card-semicircular-cut">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.99 212.52" fill="transparent" stroke="#000" stroke-width="8">
+                    <g>
+                        <path d="M2.52,210l415-3.87a279,279,0,0,0-10.16-73.93c-6.82-24.46-20.89-75-58.07-104.52C319,3.6,286.06,3.51,219.55,3.28L4.07,2.51Q3.29,106.25,2.52,210Z"></path>
+                    </g>
+                </svg>
+                <div class="card-body">
+                    <p>Полукруглый</p>
+                </div>
+            </div>
+            <!-- Прямой скос -->
+            <div class="card form-card" id="card-direct-cut">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 422.24 211.75" fill="transparent" stroke="#000" stroke-width="8">
+                    <g>
+                        <polygon points="4.78 209.21 419.74 205.34 419.74 2.5 146.45 2.5 4.78 209.21"></polygon>
+                    </g>
+                </svg>
+                <div class="card-body">
+                    <p>Прямой скос</p>
+                </div>
+            </div>
+            <!-- Прямой вырез -->
+            <div class="card form-card" id="card-ungle-pug">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.97 209.41" fill="transparent" stroke="#000" stroke-width="8">
+                    <g>
+                        <polygon points="2.5 2.5 216.21 2.5 216.21 51.27 417.47 51.27 417.47 203.02 2.5 206.89 2.5 2.5"></polygon>
+                    </g>
+                </svg>
+                <div class="card-body">
+                    <p>Прямой угол</p>
+                </div>
+            </div>
+            <!-- Матрас без выреза -->
+            <div class="card card form-card" id="card-no-cut">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.99 212.51" fill="transparent" stroke="#000" stroke-width="8" class="card-img">
+                    <g>
+                        <path d="M2.52,210l415-3.87V3.28L4.07,2.5Q3.29,106.26,2.52,210Z"></path>
+                    </g>
+                </svg>
+                <div class="card-body">
+                    <p>Без выреза</p>
+                </div>
+            </div>
+            
+        </div>
+   
+        <h2>Слои пены</h2>
+        <!-- Выбор комфортности -->
+        <div class="switch-container-2">
+            <label for="comfot-select">Комфортность</label>
+            <select id="comfort-select" class="form-control-2" name="zipper">
+                <option value="0" selected>Выбрать</option>
+                <option value="standart-50">Стандарт 50</option>
+                <option value="standart-100">Стандарт 100</option>
+                <option value="standart-150">Стандарт 150</option>
+                <option value="comfort-50" disabled>Комфорт  50</option>
+                <option value="comfort-100">Комфорт 100</option>
+                <option value="comfort-150">Комфорт 150</option>
+                <option value="premial-50">Премиум  50</option>
+                <option value="premial-100">Премиум 100</option>
+                <option value="premial-150">Премиум 150</option>
+
+
+            </select>
+        </div>
+        <!-- Первый слой пены -->
+        <div class="form-group-2" style = "margin-bottom: 25px;">
+            <div class = "label-select">
+                <label for="material-select">Материал:</label>
+                <select id="material-first-layer" class="form-control-2" name="material">
+                    <option value = 0 selected>Выбрать</option>
+                    <option value="ST2236">ST2236</option>
+                    <option value="ST3040">ST3040</option>
+                    <option value="EL4065">EL4065</option>
+                    <option value="HR3030">HR3030</option>
+                    <option value="HR3020">HR3020</option>
+                    <option value="HR3535">HR3535</option>
+                    <option value="VE3508">VE3508</option>
+                    <option value="LL5020">LL5020</option>
+                    <option value="NP2300">NP2300</option>
+                </select>
+            </div>
+            <div class = "label-select">
+                <label for="material-select">Толщина:</label>
+                <select id="bold-first-layer" class="form-control-2" name="material">
+                    <option value="0" selected>0</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150">150</option>
+                    <option value="200">200</option>
+                </select>
+            </div>
+        </div>
+        <!-- Второй слой пены -->
+        <div class="form-group-2" style = "margin-bottom: 25px;">
+            <div class = "label-select">
+                <label for="material-select">Материал:</label>
+                <select id="material-second-layer" class="form-control-2" name="material">
+                    <option value = 0 selected>Выбрать</option>
+                    <option value="ST2236">ST2236</option>
+                    <option value="ST3040">ST3040</option>
+                    <option value="EL4065">EL4065</option>
+                    <option value="HR3030">HR3030</option>
+                    <option value="HR3020">HR3020</option>
+                    <option value="HR3535">HR3535</option>
+                    <option value="VE3508">VE3508</option>
+                    <option value="LL5020">LL5020</option>
+                    <option value="NP2300">NP2300</option>
+                </select>
+            </div>
+            <div class = "label-select">
+                <label for="material-select">Толщина:</label>
+                <select id="bold-second-layer" class="form-control-2" name="material">
+                    <option value="0" selected>0</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150">150</option>
+                    <option value="200">200</option>
+                </select>
+            </div>
+        </div>
+        <!-- Третий слой пены -->
+        <div class="form-group-2" >
+            <div class = "label-select">
+                <label for="material-select">Материал:</label>
+                <select id="material-third-layer" class="form-control-2" name="material">
+                    <option value = 0 selected>Выбрать</option>
+                    <option value="ST2236">ST2236</option>
+                    <option value="ST3040">ST3040</option>
+                    <option value="EL4065">EL4065</option>
+                    <option value="HR3030">HR3030</option>
+                    <option value="HR3020">HR3020</option>
+                    <option value="HR3535">HR3535</option>
+                    <option value="VE3508">VE3508</option>
+                    <option value="LL5020">LL5020</option>
+                    <option value="NP2300">NP2300</option>
+                </select>
+            </div>
+            <div class = "label-select">
+                <label for="material-select">Толщина:</label>
+                <select id="bold-third-layer" class="form-control-2" name="material">
+                    <option value="0" selected>0</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150">150</option>
+                    <option value="200">200</option>
+                </select>   
+            </div>
+        </div>  
+        <!-- Итоговая толщина матраса -->
+        <div class="form-group">
+            <label for="input-bold" style="margin-top: 20px; display: block;">Толщина матраса:</label>
+            <input type="range" id="input-mattress-bold" class="slider" min="0" max="400" step="50" value="0" disabled>
+            <output id="input-mattress-bold-output">0</output>
+        </div>
+
+        <div class="form-group">
+            <label for="input-full-work">Введите время всех работ в минутах:</label>
+            <input type="number" id="input-work-time" min="0" value = 95 class="form-control" required inputmode="numeric" pattern="^[0-9]*$">
+        </div>
+        <div class="form-group">
+            <label for="input-textile-cost">Введите стоимость ткани в рублях:</label>
+            <input type="number" id="input-textile-cost" min="0" value = 600 class="form-control" required inputmode="numeric" pattern="^[0-9]*$">
+        </div>
+
+
+        <div class = "end-group">
+            <button id = "calculate-btn" class = "btn">Расчёт</button>
+        </div>
+
+        <div class="final-price-container">
+            <h2>Финальная цена</h2>
+            <div class="final-price-box">
+                <span id="final-price-value">0 ₽</span>
+            </div>
+           
+        </div>
+        
+
+    </div>
+   
+</body>
+</html>

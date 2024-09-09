@@ -1,0 +1,517 @@
+bodyиетbody {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f5f7;
+    color: #333;
+}
+
+.image-container {
+    text-align: center; /* Центрируем изображение */
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.cant-image {
+    width: 100%; /* Занимает всю ширину контейнера */
+    height: auto; /* Сохраняет пропорции */
+    margin-bottom: 25px;
+}
+
+/* Кнопки результатов с белым фоном и красным текстом */
+#results p {
+    background-color: #ff0000; /* Белый фон */
+    color: white;            /* Красный текст */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px black;
+    display: block;
+    width: calc(100% - 40px);
+    margin-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Эффект при наведении на кнопку результатов */
+#results p:hover {
+    background-color: #f0f0f0; /* Светло-серый фон при наведении */
+}
+
+.container {
+    width: 95%;
+    max-width: 750px;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.switch-block {
+    display: flex; 
+}
+
+.slider {
+    -webkit-appearance: none; /* Убираем стандартный стиль */
+    appearance: none;
+    width: 100%; /* Полная ширина */
+    height: 10px; /* Толщина полоски */
+    background: black; /* Красный цвет полоски */
+    outline: none; /* Убираем обводку */
+    opacity: 0.7; /* Прозрачность */
+    transition: opacity 0.2s; /* Плавный переход */
+    border-radius: 5px; /* Закругление концов полоски */
+}
+
+/* Стилизация бегунка (кружок ползунка) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Убираем стандартный стиль */
+    appearance: none;
+    width: 20px; /* Ширина бегунка */
+    height: 20px; /* Высота бегунка */
+    background: black; /* Красный цвет бегунка */
+    cursor: pointer; /* Указатель */
+    border-radius: 50%; /* Закругление бегунка */
+}
+
+/* Стилизация для Firefox */
+.slider::-moz-range-thumb {
+    width: 20px; /* Ширина бегунка */
+    height: 20px; /* Высота бегунка */
+    background: #ff0000; /* Красный цвет бегунка */
+    cursor: pointer; /* Указатель */
+    border-radius: 50%; /* Закругление бегунка */
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff0000; /* Красная окантовка */
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #333;
+}
+
+.text-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff0000; /* Красная окантовка */
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #333;
+    height: 120px;
+}
+
+.text-control label {
+    display: grid;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff0000; /* Красная окантовка */
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #333;
+    height: 120px;
+    box-sizing: border-box;
+    text-align: left; /* Выравниваем текст по левому краю */
+    vertical-align: top; /* Выравниваем текст по верхнему краю */
+    resize: none; /* Отключаем изменение размера поля */
+    overflow-y: auto; /* Добавляем прокрутку по вертикали, если текст не помещается */
+}
+
+
+.form-control:focus {
+    border-color: #ff0000; /* Красная окантовка при фокусе */
+    outline: none;
+}
+
+.btn {
+    background-color: #ff0000; /* Красная кнопка */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+.btn:hover:enabled {
+    background-color: #cc0000; /* Темно-красная кнопка при наведении */
+}
+
+#results p:hover {
+    background-color: #cc0000; /* Темно-красный фон при наведении */
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.btn-add {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.btn-add:hover:enabled {
+    background-color: #cc0000; /* Темно-красная кнопка при наведении */
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    color: #333;
+}
+
+#results {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#mattress-list {
+    text-align: left;
+    margin-top: 20px;
+}
+
+#mattress-list p {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#mattress-list p:hover {
+    background-color: #cc0000;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff0000;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.delete-btn:hover {
+    color: #cc0000;
+}
+
+#visualization {
+    margin-top: 30px;
+}
+
+#canvas {
+    width: 100%;
+    border: 1px solid #000;
+}
+
+/* Изменение фона для уведомлений */
+.toast-warning {
+    background-color: #ffc107 !important; /* Желтый фон */
+    color: #ffffff !important; /* Белый цвет текста */
+}
+
+/* Изменение иконки на треугольник с вопросом */
+.toast-warning .toast-icon {
+    display: inline-block;
+    background-color: transparent !important;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBkPSJNMTIgMmMtNC45MTggMC05IDQuMDgyLTkgOHM0LjA4MiA5IDkgOXM5LTQuMDgyIDktOVMxNi45MTggMiAxMiAyaDB6bTEgMTRaYy0uNTUyIDAtMS0uNDQ4LTEtMXYtMGMwLS41NTIuNDQ4LTEgMS0xaDBjLjU1MiAwIDEgLjQ0OCAxIDF2MGMwIC41NTItLjQ0OCAxLTEgMXptMC02Yy0uNTUyIDAtMS0uNDQ4LTEtMXYtNGMwLS41NTIuNDQ4LTEgMS0xaDBjLjU1MiAwIDEgLjQ0OCAxIDF2NGMwIC41NTItLjQ0OCAxLTEgMXoiLz4KPC9zdmc+Cg==') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    vertical-align: middle;
+}
+
+/* Изменение стиля кнопки закрытия */
+.toast-close-button {
+    color: #ffffff !important;
+}
+
+/* Изменение фона для критических уведомлений */
+.toast-critical {
+    background-color: #dc3545 !important; /* Красный фон */
+    color: #ffffff !important; /* Белый цвет текста */
+}
+
+/* Изменение иконки на крестик */
+.toast-critical .toast-icon {
+    display: inline-block;
+    background-color: transparent !important;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNDE0MTUsMS40MTQxNUMxLjgzNDc1LDEuMDEzMjEgMi41NDUyOCwxLjAxMzIxIDIuOTY0NTcsMS40MTQxNUw4LDEuNjY5MjNMMTMuMDM1NCwxLjQxNDE1QzEzLjQ1NTgsMS4wMTMyMSAxNC4xNjU1LDEuMDEzMjEgMTQuNTg1OSwxLjQxNDE1QzE1LjAwNjIsMS44MTU1OSAxNS4wMDYyLDIuNTIyNzMgMTQuNTg1OSwyLjkzMjcxTDkuNTUwMjksOC4wMjE0OEwxNC41ODU5LDEzLjA2NzdDMTUuMDA2MiwxMy40NzY3IDE1LjAwNjIsMTQuMTg3MyAxNC41ODU5LDE0LjU5MzdDMTQuMTY1NSwxNC45OTQxIDEzLjQ1NTgsMTQuOTk0MSAxMy4wMzU0LDE0LjU5MzdMOCwxMS4zNDQ5TDIuOTY0NTcsMTQuNTkzN0MyLjU0NTI4LDE0Ljk5NDEgMS44MzQ3NSwxNC45OTQxIDEuNDE0MTUsMTQuNTkzN0MxLjAwMzY1LDE0LjE4NzMgMS4wMDM2NSwxMy40NzY3IDEuNDE0MTUsMTMuMDY3N0w2LjQ1OTc2LDguMDIxNDhMMi4wNjAzMiwyLjkzMjcxQzEuNjQwNzEsMi41MjI3MyAxLjY0MDcxLDEuODE1NTkgMi4wNjAzMiwxLjQxNDE1WiIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    vertical-align: middle;
+}
+
+/* Изменение стиля кнопки закрытия */
+.toast-close-button {
+    color: #ffffff !important;
+}
+
+/* Общие стили для форм */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-control-2 {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ff0000; /* Красная окантовка */
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.zipper {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid black; /* Красная окантовка */
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.form-control-2:focus {
+    border-color: #ff0000; /* Красная окантовка при фокусе */
+    outline: none;
+}
+
+.label-select {
+    display: grid;
+}
+
+.form-group-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.label-select-2 {
+    display: grid;
+}
+
+.form-column {
+    flex: 1;
+    margin-right: 10px; /* Отступ между колонками */
+}
+
+.form-column:last-child {
+    margin-right: 0; /* Убираем отступ у последней колонки */
+}
+
+/* Стилизация контейнера для молнии */
+.switch-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.switch-container label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.switch-block {
+    display: flex;
+    justify-content: center; /* Центрируем переключатели по горизонтали */
+    align-items: center; /* Центрируем текст по вертикали */
+    gap: 50px; /* Отступ между переключателями */
+}
+
+.switch-container-2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.switch-container-2 label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    display: inline-block;
+    text-align: left;
+}
+
+.toggle-switch-checkbox {
+    display: none;
+    margin-left: 20px;
+}
+
+.toggle-switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 24px;
+    padding: 0;
+    line-height: 24px;
+    border: None;
+    border-radius: 12px;
+    background-color: #ddd;
+    transition: background-color 0.3s ease-in;
+}
+
+.toggle-switch-label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: margin 0.3s ease-in;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label {
+    background-color: #ff0000;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label:before {
+    margin-left: 36px;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.tooltip-icon {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.tooltip-content {
+    visibility: hidden;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    text-align: left;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip-container:hover .tooltip-content {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+.tooltip-content p{
+    font-size: 15px;
+}
