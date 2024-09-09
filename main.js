@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
      
   
         // Отправляем AJAX-запрос на server.php
-        fetch('server.php', {
+        fetch('gliver.ru/G_Mattress/server.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
