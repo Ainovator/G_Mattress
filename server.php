@@ -236,19 +236,16 @@ try {
             $Full_Cost_Third_Layer = ($Input_Mattress_Length / 1000) * ($Input_Mattress_Width / 1000) * ($Bold_Third_Layer / 1000) * $Material_Third_Layer * $Cost_Third_Layer;
         
             // Рассчитываем стоимость отбортовки
-            $Otbortovka = 0;
             if ($Input_Mattress_Bold >= 100) {
+                // Если толщина больше или равна 100, выполняем расчёт отбортовки
                 $Otbortovka = (($Input_Mattress_Length / 1000) * ($Input_Mattress_Bold / 1000) * 0.05 * 25 * 2 * 478) +
                               (($Input_Mattress_Width / 1000) * ($Input_Mattress_Bold / 1000) * 0.05 * 25 * 2 * 478);
-        
-                // Повторная проверка
-                if ($Input_Mattress_Bold >= 200) {
-                    $Otbortovka = (($Input_Mattress_Length / 1000) * ($Input_Mattress_Bold / 1000) * 0.05 * 25 * 2 * 476) +
-                                  (($Input_Mattress_Width / 1000) * ($Input_Mattress_Bold / 1000) * 0.05 * 25 * 2 * 476);
-                } else {
-                    $Otbortovka = 0;
-                }
+            } else {
+                // Если толщина меньше 100, расчёта нет, стоимость отбортовки равна 0
+                $Otbortovka = 0;
             }
+            
+        
         
             // Общая стоимость пены для всех слоёв + стоимость отбортовки
             $Full_Cost_Foam = round(($Full_Cost_First_Layer + $Full_Cost_Second_Layer + $Full_Cost_Third_Layer + $Otbortovka) * 1000) / 1000;
@@ -286,7 +283,7 @@ try {
             if ($doublePug === 1) {
                 $Full_Pug_Cost = ($pugOnLength * $pugOnWidth * $Pug_Cost) * 2; // Умножаем на 2, если выбрано с двух сторон
             } else {
-                $Full_Pug_Cost = $pugOnLength * $pugOnWidth * $Pug_Cost;
+                $Full_Pug_Cost = ($pugOnLength * $pugOnWidth * $Pug_Cost);
             }
         } else {
             $Full_Pug_Cost = 0;
@@ -320,22 +317,23 @@ try {
         $FullTextileCost = calculateTextileCost($TextileCost, $resultBestFit['rollLength']);
 
         //Стоимость пены
-        $Full_Cost_Foam = calculateFoamCost($length,$width,$bold_first_layer,$density_first_layer,$cost_first_layer,$bold_second_layer,$density_second_layer,$cost_second_layer,$bold_third_layer,$density_third_layer,$cost_third_layer,$quantity,$bold);
+        $Full_Cost_Foam = round($Full_Cost_Foam, 3);
 
         //Стоимость работ (заменить на Excel)
-        $Work_Cost = calculateWorkCost($WorkTime, $quantity);
+        $Work_Cost = calculateWorkCost($WorkTime);
 
         //Стоимость доп. материалов
         $full_holcon_cost = calculateHolcon($length, $width, $holcon_cost);
         $full_zipper_cost = calculateZipperCost($length, $width, $zipper_cost);
-        $Full_Pug_Cost = calculatePug($doublePug, $with_pug, $pugOnLength, $pugOnWidth, $Pug_Cost);
+        $Full_Pug_Cost = calculatePug($with_pug, $pugOnLength, $pugOnWidth, $Pug_Cost, $doublePug);
+        
         error_log("doublePug: " . $doublePug);
         error_log("pugOnLength: " . $pugOnLength);
         error_log("pugOnWidth: " . $pugOnWidth);
 
 
         $totalCost = totalCost($quantity ,$FullTextileCost, $Full_Cost_Foam, $Work_Cost, $full_holcon_cost, $full_zipper_cost, $Full_Pug_Cost);
-        $finalCost = finalCost($totalCost, $Production_MarkUp, $Wholesale_MarkUp, $Retail_Markup);
+        $finalCost = round($totalCost * $Production_MarkUp * $Wholesale_MarkUp * $Retail_Markup);
 
         // Проверка наличия ключей в массиве
         if (isset($resultBestFit['rollLength']) && isset($resultBestFit['details'])) {
@@ -354,7 +352,7 @@ try {
                     'full-cost-foam' => $Full_Cost_Foam,
                     'work-cost' => $Work_Cost,
                     'full-holcon-cost' => $full_holcon_cost,
-                    'full-zipper-zost' => $full_zipper_cost,
+                    'full-zipper-cost' => $full_zipper_cost,
                     'total-cost' => $totalCost,
                     'final-cost' => $finalCost,
                     'pug-cost' => $Full_Pug_Cost,
